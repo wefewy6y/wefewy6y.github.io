@@ -23,6 +23,8 @@
             --blue-hover: #2196f3;
             --qq-blue: #12b7f5;
             --qq-blue-hover: #0e9ed8;
+            --alipay-blue: #1677ff;
+            --wechat-green: #07c160;
         }
 
         /* 白色模式 */
@@ -38,7 +40,7 @@
         .light-mode .info-box { background: rgba(255,255,255,0.1); }
         .light-mode .info-text { color: #f0f9ff; }
         .light-mode .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-        .light-mode .afdian-box { background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(255,179,0,0.15)); border: 1px solid rgba(255,255,255,0.2); }
+        .light-mode .sponsor-box { background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(255,179,0,0.15)); border: 1px solid rgba(255,255,255,0.2); }
         .light-mode .modal { background: rgba(0,0,0,0.5); }
         .light-mode .modal-content { background: #fff; border: 1px solid #eee; box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
         .light-mode .modal-title { color: #333; }
@@ -58,7 +60,7 @@
         .dark-mode .info-box { background: rgba(40,40,60,0.3); }
         .dark-mode .info-text { color: #d0d8e0; }
         .dark-mode .btn-secondary { background: rgba(60,60,80,0.4); color: #d0d8e0; border: 1px solid rgba(255,255,255,0.15); }
-        .dark-mode .afdian-box { background: linear-gradient(135deg, rgba(80,30,30,0.3), rgba(90,50,10,0.3)); border: 1px solid rgba(255,255,255,0.1); }
+        .dark-mode .sponsor-box { background: linear-gradient(135deg, rgba(80,30,30,0.3), rgba(90,50,10,0.3)); border: 1px solid rgba(255,255,255,0.1); }
         .dark-mode .modal { background: rgba(0,0,0,0.7); }
         .dark-mode .modal-content { background: #2d2d3f; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
         .dark-mode .modal-title { color: #fff; }
@@ -80,7 +82,6 @@
             border-radius: 24px; 
             padding: 40px 25px; 
             text-align: center; 
-            /* 增加内边距，避免内容拥挤 */
             padding-bottom: 50px;
         }
         .title { font-size: 32px; margin-bottom: 10px; }
@@ -107,7 +108,7 @@
         }
         .mode-btn:hover { transform: scale(1.1); }
 
-        /* 群号复制模块（核心优化） */
+        /* 群号复制模块 */
         .info-box { 
             border-radius: 16px; 
             padding: 18px; 
@@ -133,7 +134,7 @@
             font-size: 18px;
             font-weight: bold;
             text-align: center;
-            margin: 10px 0 15px 0; /* 增加底部间距 */
+            margin: 10px 0 15px 0; 
             cursor: pointer;
             pointer-events: all;
             user-select: text;
@@ -141,14 +142,14 @@
         .qq-tip { 
             font-size: 13px; 
             color: #aaa; 
-            margin-bottom: 20px; /* 增加提示与按钮的间距 */
+            margin-bottom: 20px; 
         }
 
-        /* 按钮组布局优化（关键：解决重叠） */
+        /* 按钮组布局优化 */
         .btn-group {
             display: flex;
             flex-direction: column;
-            gap: 12px; /* 按钮之间固定间距，彻底避免重叠 */
+            gap: 12px; 
             margin-bottom: 20px;
         }
         .btn {
@@ -185,38 +186,77 @@
             color: #fff; 
         }
 
-        /* 爱发电模块 */
-        .afdian-box { 
+        /* 赞助模块（收款码） */
+        .sponsor-box { 
             border-radius: 16px; 
             padding: 18px; 
             margin-top: 10px; 
         }
-        .afdian-title { 
+        .sponsor-title { 
             font-size: 17px; 
             color: var(--yellow); 
-            margin-bottom: 8px; 
+            margin-bottom: 12px; 
             font-weight: bold; 
         }
-        .afdian-desc { 
+        .sponsor-desc { 
             font-size: 14px; 
             color: #d0d8e0; 
-            margin-bottom: 12px; 
+            margin-bottom: 15px; 
             line-height: 1.5; 
         }
-        .afdian-btn { 
-            display: inline-block; 
-            padding: 9px 22px; 
-            background: var(--red); 
-            color: #fff; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 14px; 
-            font-weight: 500; 
+        /* 收款码按钮组 */
+        .pay-btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
         }
-        .afdian-btn:hover { 
-            background: var(--red-hover); 
-            transform: translateY(-2px); 
-            box-shadow: 0 4px 12px rgba(255,107,107,0.3); 
+        .pay-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .alipay-btn {
+            background: var(--alipay-blue);
+            color: #fff;
+        }
+        .wechat-btn {
+            background: var(--wechat-green);
+            color: #fff;
+        }
+        .alipay-btn:hover, .wechat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        /* 收款码弹窗样式 */
+        .qrcode-modal .modal-content {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .qrcode-img {
+            width: 200px;
+            height: 200px;
+            margin: 15px auto;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 8px;
+            background: #fff;
+        }
+        .qrcode-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .qrcode-tip {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 10px;
         }
 
         /* 弹窗样式 */
@@ -277,6 +317,7 @@
             .modal-text { font-size: 13px; }
             .btn-group { gap: 10px; }
             .qq-input { padding: 14px; font-size: 16px; }
+            .qrcode-img { width: 180px; height: 180px; }
         }
     </style>
 </head>
@@ -300,23 +341,31 @@
 
         <!-- 群号输入框 -->
         <input type="text" class="qq-input" value="1076062564" readonly onclick="this.select()">
-        <p class="qq-tip">点击输入框自动选中，复制群号</p>
+        <p class="qq-tip">点击输入框自动选中，按 Ctrl+C 复制群号</p>
 
-        <!-- 按钮组：用div包裹，设置固定间距 -->
+        <!-- 按钮组 -->
         <div class="btn-group">
             <a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=1076062564&card_type=group&source=sharecard" class="btn btn-qq">
-                 一键打开QQ加群
+                🎯 一键打开QQ加群
             </a>
-            <button class="btn btn-secondary" onclick="openGuide()">加入教程</button>
-            <button class="btn btn-secondary" onclick="openRule()">服务器规则</button>
+            <button class="btn btn-secondary" onclick="openGuide()">📖 加入教程</button>
+            <button class="btn btn-secondary" onclick="openRule()">📜 服务器规则</button>
         </div>
 
-        <div class="afdian-box">
-            <div class="afdian-title">服务器赞助支持</div>
-            <div class="afdian-desc">
+        <!-- 赞助模块（收款码） -->
+        <div class="sponsor-box">
+            <div class="sponsor-title">💝 服务器赞助支持</div>
+            <div class="sponsor-desc">
                 自愿赞助用于服务器维护，<strong>不提供任何游戏内特权</strong>，感谢每一份支持～
             </div>
-            <a href="https://afdian.com/a/rst916" class="afdian-btn" target="_blank">前往爱发电赞助</a>
+            <div class="pay-btn-group">
+                <button class="pay-btn alipay-btn" onclick="openQrcode('alipay')">
+                    🧧 支付宝赞助
+                </button>
+                <button class="pay-btn wechat-btn" onclick="openQrcode('wechat')">
+                    🧧 微信赞助
+                </button>
+            </div>
         </div>
     </div>
 
@@ -325,7 +374,7 @@
         <div class="modal-content">
             <div class="modal-title">✨ 加入服务器教程</div>
             <div class="modal-text">1. 点击「一键打开QQ加群」按钮，直接跳转到QQ加群界面；</div>
-            <div class="modal-text">2. 若跳转失败，点击输入框选中群号 <span style="color: var(--green); font-weight: bold;">1076062564</span>，复制；</div>
+            <div class="modal-text">2. 若跳转失败，点击输入框选中群号 <span style="color: var(--green); font-weight: bold;">1076062564</span>，按 Ctrl+C 复制；</div>
             <div class="modal-text">3. 打开QQ，粘贴群号搜索并加入获取服务器IP；</div>
             <div class="modal-text">4. 打开我的世界Java版（推荐1.21.10版本）；</div>
             <div class="modal-text">5. 点击「多人游戏」→「添加服务器」→粘贴IP加入；</div>
@@ -347,6 +396,31 @@
         </div>
     </div>
 
+    <!-- 收款码弹窗 -->
+    <div class="modal qrcode-modal" id="alipayModal">
+        <div class="modal-content">
+            <div class="modal-title">支付宝赞助码</div>
+            <div class="qrcode-img">
+                <!-- 替换为你的支付宝收款码图片链接 -->
+                <img src="alipay_qrcode.jpg" alt="支付宝收款码">
+            </div>
+            <p class="qrcode-tip">长按图片保存，打开支付宝扫码赞助</p>
+            <button class="modal-close" onclick="closeModal('alipayModal')">关闭</button>
+        </div>
+    </div>
+
+    <div class="modal qrcode-modal" id="wechatModal">
+        <div class="modal-content">
+            <div class="modal-title">微信赞助码</div>
+            <div class="qrcode-img">
+                <!-- 替换为你的微信收款码图片链接 -->
+                <img src="wechat_qrcode.jpg" alt="微信收款码">
+            </div>
+            <p class="qrcode-tip">长按图片保存，打开微信扫码赞助</p>
+            <button class="modal-close" onclick="closeModal('wechatModal')">关闭</button>
+        </div>
+    </div>
+
     <script>
         // 明暗模式切换
         const modeBtn = document.getElementById('modeBtn');
@@ -365,6 +439,14 @@
         // 弹窗控制
         function openGuide() { document.getElementById('guideModal').style.display = 'flex'; }
         function openRule() { document.getElementById('ruleModal').style.display = 'flex'; }
+        // 收款码弹窗
+        function openQrcode(type) {
+            if (type === 'alipay') {
+                document.getElementById('alipayModal').style.display = 'flex';
+            } else if (type === 'wechat') {
+                document.getElementById('wechatModal').style.display = 'flex';
+            }
+        }
         function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
         window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
     </script>
